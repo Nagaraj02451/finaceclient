@@ -1,0 +1,51 @@
+import { FaTrash } from 'react-icons/fa';
+import { useMutation } from '@apollo/client';
+import { DELETE_CLIENT } from '../mutations/clientMutations';
+import { GET_CLIENTS } from '../queries/clientQueries';
+import { GET_PROJECTS } from '../queries/projectQueries';
+import { useEffect } from 'react';
+
+export default function ClientRow({ client }) {
+
+
+  console.log(client.email , "Amount");
+  const [deleteClient] = useMutation(DELETE_CLIENT, {
+    variables: { id: client.id },
+    refetchQueries: [{ query: GET_CLIENTS }, { query: GET_PROJECTS }],
+    // update(cache, { data: { deleteClient } }) {
+    //   const { clients } = cache.readQuery({ query: GET_CLIENTS });
+    //   cache.writeQuery({
+    //     query: GET_CLIENTS,
+    //     data: {
+    //       clients: clients.filter((client) => client.id !== deleteClient.id),
+    //     },
+    //   });
+    // },
+  });
+
+  useEffect(()=>{
+
+   const temp = []
+
+    const amount = client.email
+
+    temp.push(amount , ...amount)
+
+    console.log(temp , "xdfgh");
+
+
+  },[])
+
+  return (
+    <tr>
+      <td>{client.name}</td>
+      <td>{client.email}</td>
+      <td>{client.phone}</td>
+      <td>
+        <button className='btn btn-danger btn-sm' onClick={deleteClient}>
+          <FaTrash />
+        </button>
+      </td>
+    </tr>
+  );
+}
