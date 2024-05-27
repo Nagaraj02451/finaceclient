@@ -1,4 +1,4 @@
-import { FaEnvelope, FaPhone, FaIdBadge } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaIdBadge, FaMoneyBill } from 'react-icons/fa';
 
 export default function ClientInfo({ client }) {
   return (
@@ -9,7 +9,7 @@ export default function ClientInfo({ client }) {
           <FaIdBadge className='icon' /> {client.name}
         </li>
         <li className='list-group-item'>
-          <FaEnvelope className='icon' /> {client.email}
+          <FaMoneyBill className='icon' /> {client.email}
         </li>
         <li className='list-group-item'>
           <FaPhone className='icon' /> {client.phone}
